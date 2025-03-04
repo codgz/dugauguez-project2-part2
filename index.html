@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emotion Based on Day & Feeling</title>
+    <link rel="stylesheet" href="https://use.typekit.net/jkc4xqx.css">
+
+
+    <style>
+
+
+        body{
+           
+            justify-content: center;
+            align-items: center;
+	
+			font-family: "Schibsted Grotesk", serif;
+			margin: 5rem ;
+			background-color: rgb(255, 254, 246);
+			font-size: 1.2rem;
+			color: rgb(45, 74, 192);
+		}
+
+        h1{
+            align-items: center;
+            font-size: 10rem;
+            font-family: "gyst-variable", sans-serif;
+        }
+
+        /* STYLE FOR THE INPUT FIELD */
+        #input1{
+			height: 20px;
+			border-radius:  20px;
+			border: 1px solid rgb(45, 74, 192);
+			padding: 3px;
+			color: rgb(45, 74, 192);
+            width: 40px;
+        }
+
+       
+
+        #input2 {
+            margin-left: 20px;
+			height: 20px;
+			border-radius:  20px;
+			border: 1px solid rgb(45, 74, 192);
+			padding: 3px;
+			color: rgb(45, 74, 192);
+            width: 40px;
+        }
+
+        .inputs{
+         display: flex;
+        }
+
+        /* STYLE FOR THE SUBMIT BUTTON */
+        #submitButton {
+			border-radius:  20px;
+			border: 1px solid rgb(45, 74, 192);
+			padding: 10px;
+			font-size: 1.25rem;
+			background-color: white;
+			color: rgb(45, 74, 192);
+			text-transform: uppercase;
+		
+        }
+
+        #submitButton :active {
+			background-color: rgb(45, 74, 192);
+		
+        }
+
+        /* STYLE FOR THE IMAGE */
+        #displayedImage {
+            display: none; /* This line is mandatory */
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+    <h1> How do you feel?</h1>
+
+    <div class="inputs">
+        <h2>How was your day? (1-10)</h2>
+        <input type="number" id="input1" min="1" max="10" required>
+        
+
+        <h2>How are you feeling? (1-10)</h2>
+        <input type="number" id="input2" min="1" max="10" required>
+    </div>
+
+
+    <!-- BUTTON TO DISPLAY IMAGE -->
+    <button onclick="displayImage()" id="submitButton">Show Image</button>
+
+    <!-- IMAGE TO DISPLAY -->
+    <img id="displayedImage" src="" alt="Displayed Image">
+
+
+    <!-- Image Display Script Below -->
+    <script>
+
+        function displayImage() {
+
+            const imgElement = document.getElementById("displayedImage");
+
+            const x = document.getElementById("inputX").value; // How was your day?
+            const y = document.getElementById("inputY").value; // How are you feeling rn?
+
+
+            //Arithmetic: https://www.w3schools.com/js/js_arithmetic.asp
+            let mymathresult = x - y;
+            
+            //let x = ; (where you define your values)
+            //let y = ;
+
+            console.log("How was your day? (x):", x); //Console is a way to show a value in the console inspector
+            console.log("How are you feeling? (y):", y);
+
+
+            if (x == 1 && y < 3) {
+                imgElement.src = "img/heartbroken.jpg"; // Very sad image
+                imgElement.style.display = "block";
+            } 
+            
+            if (x == 2 && y == 3) {
+                imgElement.src = "img/heartbroken.jpg"; // Slightly sad image
+                imgElement.style.display = "block";
+            } 
+            
+            if (x == 3 && y > 3) {
+                imgElement.src = "img/heartbroken.jpg"; // Okay image
+                imgElement.style.display = "block";
+            } 
+            
+            if (x == 4 && y > 3) {
+                imgElement.src = "img/heartbroken.jpg"; // Not bad image
+                imgElement.style.display = "block";
+            } 
+            
+            if (x == 5 && y < 3) {
+                imgElement.src = "img/heartbroken.jpg"; // Neutral image
+                imgElement.style.display = "block";
+            } 
+            
+            if (x == 6 && y > 5) {
+                imgElement.src = "img/heartbroken.jpg"; // Happy image
+                imgElement.style.display = "block";
+            } 
+            
+            if (x == 7 && y == 5) {
+                imgElement.src = "img/heartbroken.jpg"; // Neutral image (ok day, normal feeling)
+                imgElement.style.display = "block";
+            } 
+            
+            if (x == 8 && y > 7) {
+                imgElement.src = "img/heartbroken.jpg"; // Very happy image
+                imgElement.style.display = "block";
+            } 
+            
+            if (x == 9 && y == 10) {
+                imgElement.src = "img/heartbroken.jpg"; // Extremely happy image
+                imgElement.style.display = "block";
+            } 
+            
+            if (x == 10 && y == 10) {
+                imgElement.src = "img/heartbroken.jpg"; // Perfect day image
+                imgElement.style.display = "block";
+            } 
+            
+        }
+
+
+          
+    </script>
+
+</body>
+
+</html>
