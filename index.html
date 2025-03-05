@@ -11,34 +11,38 @@
 
 
         body{
-           
-            justify-content: center;
+            text-align: center;
             align-items: center;
-	
+            justify-content: center;
 			font-family: "Schibsted Grotesk", serif;
-			margin: 5rem ;
+			margin: 3rem ;
 			background-color: rgb(255, 254, 246);
 			font-size: 1.2rem;
 			color: rgb(45, 74, 192);
+           
 		}
 
         h1{
+            margin-top: 2rem;
             align-items: center;
-            font-size: 10rem;
+            font-size: 13rem;
             font-family: "gyst-variable", sans-serif;
+            font-weight: 500;
         }
 
         /* STYLE FOR THE INPUT FIELD */
         #input1{
+            margin-left: 20px;
+            margin-right: 50px;
 			height: 20px;
 			border-radius:  20px;
 			border: 1px solid rgb(45, 74, 192);
 			padding: 3px;
 			color: rgb(45, 74, 192);
             width: 40px;
+   
         }
 
-       
 
         #input2 {
             margin-left: 20px;
@@ -48,14 +52,23 @@
 			padding: 3px;
 			color: rgb(45, 74, 192);
             width: 40px;
+         
         }
 
         .inputs{
-         display: flex;
+            display: flex;
+            text-align: center;
+            align-items: center;
+            justify-content: center;
+            margin-top: 0rem;
+            z-index: 1000;
+            font-family: "gyst-variable", sans-serif;
+            font-weight: 100;
         }
 
         /* STYLE FOR THE SUBMIT BUTTON */
         #submitButton {
+            margin-top: 1rem;
 			border-radius:  20px;
 			border: 1px solid rgb(45, 74, 192);
 			padding: 10px;
@@ -63,6 +76,14 @@
 			background-color: white;
 			color: rgb(45, 74, 192);
 			text-transform: uppercase;
+            text-align: center;
+            align-items: center;
+            justify-content: center;
+            z-index: 900;
+        }
+
+        #submitButton :hover {
+			background-color: rgb(80, 108, 219);
 		
         }
 
@@ -73,7 +94,23 @@
 
         /* STYLE FOR THE IMAGE */
         #displayedImage {
-            display: none; /* This line is mandatory */
+            margin-top: -4rem;
+            display: none; 
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            width: 30%; 
+            margin-bottom: 4rem; 
+            position: absolute; 
+            top: 50%; 
+            left: 50%; 
+            transform: translate(-50%, -50%); 
+}
+
+        #displayedImage img {
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover; 
         }
 
     </style>
@@ -82,15 +119,15 @@
 
 <body>
 
-    <h1> How do you feel?</h1>
+    <h1> How do you feel in letters?</h1>
 
     <div class="inputs">
-        <h2>How was your day? (1-10)</h2>
-        <input type="number" id="input1" min="1" max="10" required>
+        <h2>How was your day? </h2>
+        <input type="text" id="input1" required>
         
 
-        <h2>How are you feeling? (1-10)</h2>
-        <input type="number" id="input2" min="1" max="10" required>
+        <h2>How are you feeling? </h2>
+        <input type="text" id="input2" required>
     </div>
 
 
@@ -107,71 +144,80 @@
         function displayImage() {
 
             const imgElement = document.getElementById("displayedImage");
+            
+            const input1_letter = document.getElementById("input1").value.toUpperCase();
+            const input2_letter = document.getElementById("input2").value.toUpperCase();
 
-            const x = document.getElementById("inputX").value; // How was your day?
-            const y = document.getElementById("inputY").value; // How are you feeling rn?
+            const input1 = input1_letter.charCodeAt(0)-64; //Converts the letter to a number (https://www.ascii-code.com); For instance, 'A' is 65 in ASCII
+            const input2 = input2_letter.charCodeAt(0)-64; //Converts the letter to a number (https://www.ascii-code.com); For instance, 'A' is 65 in ASCII
+            
+            console.log(input1);
 
 
             //Arithmetic: https://www.w3schools.com/js/js_arithmetic.asp
-            let mymathresult = x - y;
-            
-            //let x = ; (where you define your values)
-            //let y = ;
-
-            console.log("How was your day? (x):", x); //Console is a way to show a value in the console inspector
-            console.log("How are you feeling? (y):", y);
+            let mymathresult = input1 + input2;
 
 
-            if (x == 1 && y < 3) {
-                imgElement.src = "img/heartbroken.jpg"; // Very sad image
-                imgElement.style.display = "block";
-            } 
+            //const imgElement = document.getElementById("displayedImage");
+            console.log(mymathresult); //Console is a way to show a value in the console inspector
+
+            //if(input1_number == 67 && input2_number == 68) { //If input1_number is 67 (C) AND input2_number is 68 (D), then show this image
+                //imgElement.src = "https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExdWx2NnlvN3RocHVya2d3cXB5b2V0bXRqNXhyMGZkZG4wd3Zpdm13NiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/o75ajIFH0QnQC3nCeD/giphy.gif"
+               // imgElement.style.display = "block";
+            //} 
+
+
+            if(mymathresult < 5 || mymathresult == 5) { //If input1_number is 67 (C) AND input2_number is 68 (D), then show this image
+                imgElement.src = "img/1.jpg";
+                imgElement.style.display = "block"; // very sad img
+            }
             
-            if (x == 2 && y == 3) {
-                imgElement.src = "img/heartbroken.jpg"; // Slightly sad image
-                imgElement.style.display = "block";
-            } 
+            else if(mymathresult < 10 || mymathresult == 10 ) { //If input1_number is 67 (C) AND input2_number is 68 (D), then show this image
+                imgElement.src = "img/2.jpg";
+                imgElement.style.display = "block"; // slightly sad img
+            }
+
+            else if(mymathresult < 15 || mymathresult == 15) { //If input1_number is 67 (C) AND input2_number is 68 (D), then show this image
+                imgElement.src = "img/3.jpg";
+                imgElement.style.display = "block"; // very sad img
+            }
             
-            if (x == 3 && y > 3) {
-                imgElement.src = "img/heartbroken.jpg"; // Okay image
-                imgElement.style.display = "block";
-            } 
+            else if(mymathresult < 20 || mymathresult == 20) { //If input1_number is 67 (C) AND input2_number is 68 (D), then show this image
+                imgElement.src = "img/4.jpg";
+                imgElement.style.display = "block"; // slightly sad img
+            }
+
+            else if(mymathresult < 25 || mymathresult == 25) { //If input1_number is 67 (C) AND input2_number is 68 (D), then show this image
+                imgElement.src = "img/5.jpeg";
+                imgElement.style.display = "block"; // very sad img
+            }
             
-            if (x == 4 && y > 3) {
-                imgElement.src = "img/heartbroken.jpg"; // Not bad image
-                imgElement.style.display = "block";
-            } 
+            else if(mymathresult < 30 || mymathresult == 30) { //If input1_number is 67 (C) AND input2_number is 68 (D), then show this image
+                imgElement.src = "img/6.jpg";
+                imgElement.style.display = "block"; // slightly sad img
+            }
+
+            else if(mymathresult < 35 || mymathresult == 35) { //If input1_number is 67 (C) AND input2_number is 68 (D), then show this image
+                imgElement.src = "img/7.jpg";
+                imgElement.style.display = "block"; // very sad img
+            }
             
-            if (x == 5 && y < 3) {
-                imgElement.src = "img/heartbroken.jpg"; // Neutral image
-                imgElement.style.display = "block";
-            } 
+            else if(mymathresult < 40 || mymathresult == 40) { //If input1_number is 67 (C) AND input2_number is 68 (D), then show this image
+                imgElement.src = "img/8.jpg";
+                imgElement.style.display = "block"; // slightly sad img
+            }
+
+            else if(mymathresult < 45 || mymathresult == 45) { //If input1_number is 67 (C) AND input2_number is 68 (D), then show this image
+                imgElement.src = "img/9.jpg";
+                imgElement.style.display = "block"; // very sad img
+            }
             
-            if (x == 6 && y > 5) {
-                imgElement.src = "img/heartbroken.jpg"; // Happy image
-                imgElement.style.display = "block";
-            } 
-            
-            if (x == 7 && y == 5) {
-                imgElement.src = "img/heartbroken.jpg"; // Neutral image (ok day, normal feeling)
-                imgElement.style.display = "block";
-            } 
-            
-            if (x == 8 && y > 7) {
-                imgElement.src = "img/heartbroken.jpg"; // Very happy image
-                imgElement.style.display = "block";
-            } 
-            
-            if (x == 9 && y == 10) {
-                imgElement.src = "img/heartbroken.jpg"; // Extremely happy image
-                imgElement.style.display = "block";
-            } 
-            
-            if (x == 10 && y == 10) {
-                imgElement.src = "img/heartbroken.jpg"; // Perfect day image
-                imgElement.style.display = "block";
-            } 
-            
+            else if(mymathresult < 52 || mymathresult == 52 ) { //If input1_number is 67 (C) AND input2_number is 68 (D), then show this image
+                imgElement.src = "img/10.jpg";
+                imgElement.style.display = "block"; // slightly sad img
+            }
+
+
         }
 
 
